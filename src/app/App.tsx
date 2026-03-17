@@ -68,6 +68,8 @@ export default function App() {
         setStatus('error');
         if (data.message) {
           setMessage(data.message);
+        } else if (res.status === 403) {
+          setMessage("The form doesn't work on this host (e.g. Vercel doesn't run PHP). Deploy to Namecheap or another PHP host to enable notifications.");
         } else if (res.status === 404) {
           setMessage('Form handler not found. The form only works when the site is deployed with PHP (e.g. on Namecheap). See DEPLOY.md for local testing.');
         } else {
@@ -81,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#2c3e50] relative overflow-x-hidden flex flex-col">
+    <div className="h-screen min-h-[100dvh] bg-[#2c3e50] relative overflow-hidden flex flex-col">
       {/* Subtle tread pattern */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +99,7 @@ export default function App() {
         </svg>
       </div>
 
-      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
+      <main className="flex-1 min-h-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10 overflow-y-auto">
         {/* Hero: logo + tire visual (logo contains tire) */}
         <div
           className={`flex flex-col items-center text-center mb-10 sm:mb-14 transition-all duration-700 ease-out ${

@@ -40,6 +40,8 @@ pnpm run build
 
 Output goes to the **`dist`** folder. Upload the **contents** of `dist` to your host (e.g. `public_html` on Namecheap), plus `send_notification.php` in the same directory as `index.html`.
 
+**Vercel / static hosts:** The site can be deployed to Vercel (or any static host) for the landing page. The **"Notify Me" form will not work** there—Vercel does not run PHP, so you'll get 403 when submitting. For the form to work, deploy to a PHP host (e.g. Namecheap) as described in "Deploying on Namecheap" below.
+
 ---
 
 ## 3. Environment variables
