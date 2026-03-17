@@ -69,7 +69,7 @@ export default function App() {
         if (data.message) {
           setMessage(data.message);
         } else if (res.status === 403) {
-          setMessage("The form doesn't work on this host (e.g. Vercel doesn't run PHP). Deploy to Namecheap or another PHP host to enable notifications.");
+          setMessage('Notify Me works when you deploy to a PHP host (e.g. Namecheap). This preview host doesn’t support it.');
         } else if (res.status === 404) {
           setMessage('Form handler not found. The form only works when the site is deployed with PHP (e.g. on Namecheap). See DEPLOY.md for local testing.');
         } else {
@@ -83,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen min-h-[100dvh] bg-[#2c3e50] relative overflow-hidden flex flex-col">
+    <div className="fixed inset-0 w-full h-full max-h-[100dvh] bg-[#2c3e50] flex flex-col overflow-hidden">
       {/* Subtle tread pattern */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -99,14 +99,14 @@ export default function App() {
         </svg>
       </div>
 
-      <main className="flex-1 min-h-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10 overflow-y-auto">
+      <main className="flex-1 min-h-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 sm:py-10 relative z-10 overflow-y-auto overflow-x-hidden">
         {/* Hero: logo + tire visual (logo contains tire) */}
         <div
-          className={`flex flex-col items-center text-center mb-10 sm:mb-14 transition-all duration-700 ease-out ${
+          className={`flex flex-col items-center text-center mb-6 sm:mb-8 transition-all duration-700 ease-out ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          <div className="otires-logo-hero mb-6 sm:mb-8">
+          <div className="otires-logo-hero mb-4 sm:mb-5">
             <img
               src={logoSrc}
               alt="Otires – Drive safe, pay less"
@@ -128,13 +128,13 @@ export default function App() {
           }`}
           style={{ transitionDelay: staggerVisible ? '0ms' : '0ms' }}
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-wide mb-4 animate-stagger-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-wide mb-3 animate-stagger-2">
             SITE UNDER CONSTRUCTION
           </h2>
-          <div className="flex justify-center mb-6 animate-stagger-3">
+          <div className="flex justify-center mb-4 animate-stagger-3">
             <Construction className="w-10 h-10 sm:w-12 sm:h-12 text-[#F2B705]" aria-hidden />
           </div>
-          <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-10 animate-stagger-4">
+          <p className="text-white/90 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 animate-stagger-4">
             Buy tires online with up to <span className="text-[#F2B705] font-semibold">30% less</span> — premium quality and fast delivery you can trust.
           </p>
         </div>
@@ -170,7 +170,7 @@ export default function App() {
             </form>
           )}
           {status === 'error' && message && (
-            <p className="text-red-300 text-sm mt-2 text-center" role="alert">
+            <p className="text-white/70 text-sm mt-2 text-center max-w-sm" role="alert">
               {message}
             </p>
           )}
@@ -180,7 +180,7 @@ export default function App() {
       {/* Footer with logo */}
       <footer
         ref={footerRef}
-        className={`relative z-10 p-6 sm:p-8 transition-all duration-700 ease-out ${
+        className={`relative z-10 flex-shrink-0 p-4 sm:p-6 transition-all duration-700 ease-out ${
           footerReveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
       >
